@@ -95,16 +95,16 @@ if [[ "$backup" = true ]]; then
     fi
     if [[ "$compress" = true ]]; then
         backup_name="$backup_name.tar.gz"
-        echo "Compressing and backing up $old_world to $backup_name ..."
+        echo "Compressing and backing up $old_world to $backup_name..."
         tar -zcf "old_worlds/$backup_name" "${old_world}/" && \
         echo "Compressing and backing up complete!"
         if [[ "$only_backup" = false ]]; then
-            echo "Deleting $old_world ..."
+            echo "Deleting $old_world..."
             rm -rf "$old_world" && \
             echo "Deleting $old_world completed!"
         fi
     else
-        echo "Moving $old_world to old_worlds/$backup_name ..."
+        echo "Moving $old_world to old_worlds/$backup_name..."
         mkdir "old_worlds/$backup_name"
         mv "$old_world" "old_worlds/$backup_name" && \
         echo "Backing up complete!"
@@ -113,17 +113,17 @@ elif [[ -d "$old_world" ]]; then
     echo "No backup name was supplied, and the files will be deleted."
     read -p "Are you sure you want to delete $old_world? (yes/no): " -r
     if [[ "$REPLY" =~ (Yes|yes|Y|y) ]]; then
-        echo "Deleting $old_world ..."
+        echo "Deleting $old_world..."
         rm -rf "$old_world" && \
         echo "Deleting $old_world completed!"
     else
-        echo "Exiting ..."
+        echo "Exiting..."
         exit 1
     fi
 fi
 
 if [[ ! -z "$new_name" ]]; then
-    echo "Changing world name to $new_name ..."
+    echo "Changing world name to $new_name..."
     sed -i "s/^level-name=.*/level-name=$new_name/" \
         server.properties && \
     echo "Changing world name to $new_name complete!"
@@ -133,7 +133,7 @@ else
 fi
 
 if [[ "$run" = true ]]; then
-    echo "Running the server ..."
+    echo "Running the server..."
     # set -x
     ./start_server.sh <<< 'stop' && \
     # set +x && \
