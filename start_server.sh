@@ -23,4 +23,12 @@ if [ -n "$1" ]; then
     cp "server.properties.$selected_config" "server.properties"
 fi
 
-java -Xms2G -Xmx2G -jar minecraft_server.1.20.4.jar nogui
+java_fp="./java"
+
+if [ -e "$java_fp" ]; then
+    java="$java_fp"
+else
+    java="java"
+fi
+
+$java -Xms2G -Xmx2G -jar minecraft_server.jar nogui
